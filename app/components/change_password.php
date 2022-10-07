@@ -35,7 +35,7 @@ if (isset($_GET['change'])) {
                             } else {
                                 $hashed = password_hash($new_password, PASSWORD_DEFAULT);
                                 $db->query("UPDATE `users` SET `password` = '{$hashed}', `change_password` = '1' WHERE `user_id` = '{$user_id}'");
-                                unset($_SESSION['ADMIN_USER_SESSIONS']);
+                                unset($_SESSION['ADMIN_USER_SESSIONS'], $_SESSION['ADMIN_USER_SESSIONS']);
                                 redirect(PROOT . 'index.php');
                             }
                         } ?>
@@ -46,7 +46,7 @@ if (isset($_GET['change'])) {
                             <input type="password" name="confirm" id="confirm" placeholder="Confirm Password" class="form-control form-control-sm mb-3">
                         </div>
                         <input type="submit" value="Change" class="btn btn-outline-dark mb-2">
-                        <a href="<?= PROOT ?>app/users/admin/dashboard.php" class="btn btn-danger mb-2">Cancel</a>
+                        <a href="<?= PROOT ?>index.php" class="btn btn-danger mb-2">Cancel</a>
                     </form>
                 </div>
             </div>

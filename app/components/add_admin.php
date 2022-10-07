@@ -39,7 +39,7 @@ $reg_password = 'A5p1@!bl..';
                 } else {
                     // add user
                     $hashed = password_hash($reg_password, PASSWORD_DEFAULT);
-                    $db->query("INSERT INTO users (`full_name`, `user_name`, `password`, `user_role`) VALUES('$reg_name', '$reg_user_name', '$hashed', '1')");
+                    $db->query("INSERT INTO users (`full_name`, `user_name`, `password`, `user_role`, `user_type`) VALUES('$reg_name', '$reg_user_name', '$hashed', '1', '1')");
                     redirect(PROOT . 'app/users/admin/users.php');
                 }
             }

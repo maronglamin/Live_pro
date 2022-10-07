@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . './schoolapp/core/init.php';
 if (!is_logged_in()) {
     login_error_redirect(PROOT . "index.php", "Enroll");
 }
-if ($user_data['user_role'] != ADMISSION_USER) {
+if (!($auth_user_role == ADMISSION_USER || $auth_user_role == PRINCIPAL_USER)) {
     login_redirect();
 }
 

@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . './schoolapp/core/init.php';
 if (!is_logged_in()) {
     login_error_redirect(PROOT . "index.php", "Enroll");
 }
-if ($user_data['user_role'] != ADMISSION_USER) {
+if (!($auth_user_role == ADMISSION_USER || $auth_user_role == PRINCIPAL_USER)) {
     login_redirect();
 }
 include(ROOT . DS . "app" . DS . "components" . DS . "client_nav.php");
@@ -89,7 +89,10 @@ if (isset($_GET['complete'])) {
                                                     <img src="<?= PROOT . 'app/' . $stud_prof_photo['stud_prof_photo_url'] ?>" class="user-img d-block m-auto mb-2" />
                                                 </div>
                                                 <div class="mt-5">
-                                                    <a href="enroll.php" class="btn btn-outline-dark mt-5">Back</a>
+                                                    <a href="enroll.php" class="btn btn-outline-dark mt-5 mx-1">Back</a>
+                                                    <?php if($auth_user_role == PRINCIPAL_USER):?>
+                                                        <a href="../dashboard.php" class="btn btn-outline-dark mt-5">Back to Approve</a>
+                                                    <?php endif;?>
                                                 </div>
                                             <?php endwhile; ?>
                                         <?php endif; ?>

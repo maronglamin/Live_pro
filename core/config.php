@@ -17,9 +17,18 @@ define('ADMISSION_URL', PROOT . "app/users/admin/admission/enroll.php");
 define('ADMIN_DASHBOARD_URL', PROOT . "app/users/admin/dashboard.php");
 
 
+define('DEFAULT_USER_ICON', PROOT . "app/photos/user-default.png");
+
+
 define('CLIENT_DASHBOARD_URL', PROOT . "app/users/client/dashboard.php");
 define('CLIENT_ADMISSION_URL', PROOT . "app/users/client/admission/enroll.php");
+define('ADMISSION_OFFICER_DASHBOAD', 'admission/admission_dashboard.php');
+define('ADMISSION_PRINCIPAL_DASHBOAD', 'admission/approve_admission.php');
 
+define('ENROLLED_STUDENTS', PROOT. 'app/users/client/admission/enrolled.php');
+define('ADMIN_ENROLLED_STUDENTS', PROOT. 'app/users/admin/admission/enrolled.php');
+define('ENROLL_STATUS', PROOT. 'app/users/client/admission/enroll-status.php');
+define('ENROLL_YEAR', PROOT. 'app/users/admin/admission/academic-year.php');
 
 
 define('ADMIN_USER', "1");

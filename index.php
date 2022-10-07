@@ -67,6 +67,9 @@ $user_name = trim($user_name);
                                 $user_id = $user['user_id'];
                                 login_admin($user_id);
                             } else if ($user_role['user_type'] == CLIENT_USER) {
+                                if ($user_role['change_password'] == CHANGE_PASSWORD) {
+                                    redirect(PROOT . "app" . DS . "components" . DS . "change_password.php?change=" . $user_role['user_id']);
+                                }
                                 $user_id = $user['user_id'];
                                 login_client($user_id);
                             } else {

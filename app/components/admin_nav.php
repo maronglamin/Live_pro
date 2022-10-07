@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top style=" background-color: #e3f2fd;"">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top style="background-color: #e3f2fd;">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= ADMIN_DASHBOARD_URL ?>"><span class="text-primary">
                 <img src="<?= PROOT ?>app/photos/afang_logo.png" alt="" width="45" height="35" class="d-inline-block align-text-top">
@@ -10,7 +10,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="<?=ENROLL_YEAR?>">enrolment Year</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<?=ADMIN_ENROLLED_STUDENTS?>">Enrolled Students</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
