@@ -43,11 +43,12 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?= ADMISSION_URL ?>">Enroll Students</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something</a></li>
+                            <li><a class="dropdown-item" href="<?= CLASS_PROPERTY ?>">Create Class</a></li>                        
+                            <li><a class="dropdown-item" href="#">Create School Subject</a></li>                        
+                            <li><a class="dropdown-item" href="#">Assigned</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

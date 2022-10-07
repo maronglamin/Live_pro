@@ -30,6 +30,8 @@ define('ADMIN_ENROLLED_STUDENTS', PROOT. 'app/users/admin/admission/enrolled.php
 define('ENROLL_STATUS', PROOT. 'app/users/client/admission/enroll-status.php');
 define('ENROLL_YEAR', PROOT. 'app/users/admin/admission/academic-year.php');
 
+define('CLASS_PROPERTY', PROOT. 'app/users/admin/school/class_property.php');
+
 
 define('ADMIN_USER', "1");
 define('CLIENT_USER', "2");

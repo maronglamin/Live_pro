@@ -57,7 +57,7 @@ if (isset($_GET['act'])) {
         <div class="row">
             <div class="col">
                 <h2 class="text-primary">System Users</h2>
-                <p>View all users of the system including our customers.</p>
+                <p>View all users of the system i.e the teaching staff, principal and others.</p>
             </div>
         </div>
     </div>
@@ -192,7 +192,7 @@ if (isset($_GET['act'])) {
                             </select>
                         </div>
                         <input type="submit" value="Add" class="btn btn-outline-dark">
-                        <a href="<?= PROOT ?>app/users/admin/dashboard.php" class="btn btn-danger">Cancel</a>
+                        <button type="reset" class="btn btn-danger">Reset</a>
                     </form>
                 </div>
             </div>
