@@ -8,6 +8,7 @@ if ($user_data['user_role'] != ADMIN_USER) {
 }
 include(ROOT . DS . "app" . DS . "components" . DS . "admin_nav.php");
 $errors = [];
+$search = [];
 
 $class_query = $db->query("SELECT * FROM `school_class`");
 $class_select = $db->query("SELECT * FROM `school_class`");
@@ -15,6 +16,7 @@ $class_select = $db->query("SELECT * FROM `school_class`");
 $class_name_word = ((isset($_POST['class-name-word'])) ? sanitize($_POST['class-name-word']) : '');
 $class_name_figure = ((isset($_POST['class-name-figure'])) ? sanitize($_POST['class-name-figure']) : '');
 $class_size = ((isset($_POST['class-size'])) ? sanitize($_POST['class-size']) : '');
+$student_class = ((isset($_POST['student-class'])) ? sanitize($_POST['student-class']) : '');
 
 ?>
 <br><br>
@@ -121,8 +123,10 @@ $class_size = ((isset($_POST['class-size'])) ? sanitize($_POST['class-size']) : 
                                                         if (!empty($errors)) {
                                                             echo display_errors($errors);
                                                         } else {
+                                                                $class_qry = $db->query("SELECT * FROM `enroll_student` WHERE `enroll_class` = '{$student_class}'");                                                            }
+                                                            
                                                         }
-                                                    }?>
+                                                    ?>
                                             </div>
                                             <select name="student-class" id="student-class" class="form-control form-control-sm">
                                                 <option value="">select to show</option>
@@ -143,19 +147,24 @@ $class_size = ((isset($_POST['class-size'])) ? sanitize($_POST['class-size']) : 
                                             <th scope="col">Full name</th>
                                             <th scope="col">Enrolled year</th>
                                             <th scope="col">Class</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Address</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php 
+                                         if ($student_class == '') {
+                                            $errors[] .= 'You must select a class.';
+                                         } elseif (isset($_POST['fetch_class'])) {
+                                            while ($result = mysqli_fetch_assoc($class_qry)) { ?>
                                     <tr>
-                                        <th scope="row">SN22001</th>
-                                        <td>Modou lamin</td>
-                                        <td>2022</td>
-                                        <td>Seven Square</td>
-                                        <td>
-                                            <a href="#" class="btn btn-outline-dark btn-sm">Summary</a>
-                                        </td>
+                                        <th scope="row"><?= $result['stud_id']?></th>
+                                        <td><?= $result['stud_name']?></td>
+                                        <td><?= year_format($result['stud_enroll_yr'])?></td>
+                                        <td><?= (($result['stud_gender']) == 1)? 'Male': 'Female'?></td>
+                                        <td><?= $result['stud_address']?></td>
+                                    </tr>
+                                        <?php } } ?>
                                     </tbody>
                                 </table>
                             </div>

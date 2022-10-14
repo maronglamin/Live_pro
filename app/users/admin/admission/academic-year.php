@@ -32,7 +32,7 @@ if (isset($_GET['statusOpen']) || $_GET['statusClose']) {
     } else {
         $db->query("UPDATE `acad_year` SET `close_acad_year` = 1, `closed_by` = '{$auth_user_name}' WHERE `acad_year_id` = '{$tatus_close}'");
     }
-    redirect('dashboard.php');
+    redirect('academic-year.php');
 }
 
 ?>
@@ -71,12 +71,12 @@ if (isset($_GET['statusOpen']) || $_GET['statusClose']) {
                                                 } else {
                                                     $db->query("INSERT INTO `acad_year`(`acad_year`, `acad_year_inputted_by`) VALUES ('{$acad_year}','{$auth_user}')");
                                                     echo spinner();
-                                                    redirect('dashboard.php');
+                                                    redirect('academic-year.php');
                                                 }
                                             }
                                         }
                                         ?>
-                                        <form class="row" action="dashboard.php?academic_year=1" method="post">
+                                        <form class="row" action="academic-year.php?academic_year=1" method="post">
                                             <div class="col">
                                                 <div class="mb-2">
                                                     <input type="date" name="acad_year" class="form-control" placeholder="Academic year" />
@@ -110,9 +110,9 @@ if (isset($_GET['statusOpen']) || $_GET['statusClose']) {
                                                     <th scope="row"><?= day_month($acad_year_res['acad_year']) ?></th>
                                                     <td><?= $input_by_res['user_name'] ?></td>
                                                     <?php if ($acad_year_res['close_acad_year'] == 0) : ?>
-                                                        <td><a href="dashboard.php?statusClose=<?= $acad_year_res['acad_year_id'] ?>" class="btn btn-danger btn-sm">Close</a></td>
+                                                        <td><a href="academic-year.php?statusClose=<?= $acad_year_res['acad_year_id'] ?>" class="btn btn-danger btn-sm">Close</a></td>
                                                     <?php else : ?>
-                                                        <td><a href="dashboard.php?statusOpen=<?= $acad_year_res['acad_year_id'] ?>" class="btn btn-outline-dark btn-sm">Reopen</a></td>
+                                                        <td><a href="academic-year.php?statusOpen=<?= $acad_year_res['acad_year_id'] ?>" class="btn btn-outline-dark btn-sm">Reopen</a></td>
                                                     <?php endif; ?>
                                                 </tr>
                                             <?php endwhile; ?>
@@ -123,23 +123,6 @@ if (isset($_GET['statusOpen']) || $_GET['statusClose']) {
                         </div>
                         <div class="col-md-8">
                             <h3 class="text-center text-secondary">Student's Profile</h3>
-                            <form action="#" method="post" class="ms-3 mx-3">
-                                <div class="card mt-2 ms-2 mx-2">
-                                    <div class="card-header">
-                                        <button type="submit" class="btn btn-secondary btn-sm">Search</button>
-                                        <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                    </div>
-                                </div>
-                                <p class="text-secondary">Search Student</p>
-                                <div class="row">
-                                    <div class="col-md-6 form-group mt-2 mb-2">
-                                        <input type="text" name="stnumber" id="stnumber" placeholder="student id number" class="form-control form-control-sm">
-                                    </div>
-                                    <div class="col-md-6 form-group mt-2 mb-2">
-                                        <input type="text" name="stnumber" id="stname" placeholder="full names" class="form-control form-control-sm">
-                                    </div>
-                                </div>
-                            </form>
                             <div class="card mx-2">
                                 <table class="table table-striped table-sm table-hover">
                                     <thead>

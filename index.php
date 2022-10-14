@@ -18,11 +18,7 @@ $user_name = trim($user_name);
                 <div class="col-md-12">
                     <?php
                     if ($_POST) {
-                        //checking password's length
-                        if (strlen($password) < 6) {
-                            $errors[] = 'Password must be at least 6 character.';
-                        }
-
+                       
                         //check if the email exist in the database
                         $query = $db->query("SELECT * FROM `users` WHERE `user_name` = '{$user_name}'");
                         $user = mysqli_fetch_assoc($query);

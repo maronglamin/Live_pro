@@ -47,7 +47,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="<?= CLASS_PROPERTY ?>">Create Class</a></li>                        
-                            <li><a class="dropdown-item" href="#">Create School Subject</a></li>                        
+                            <li><a class="dropdown-item" href="<?=SUBJECT_URL?>">Create School Subject</a></li>                        
                             <li><a class="dropdown-item" href="#">Assigned</a></li>
                         </ul>
                     </li>

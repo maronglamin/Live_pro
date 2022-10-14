@@ -1,6 +1,30 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . './schoolapp/core/init.php';
 include './../includes.php';
+
+$enroll_class = ((isset($_POST['enroll'])) ? sanitize($_POST['enroll']) : '');
+
+if (isset($_GET['stud'])) {
+    $student_id = (int)sanitize($_GET['stud']);
+
+    if (isset($_POST)) {
+        $required = ['enroll'];
+        foreach ($required as $fields) {
+            if ($_POST[$fields] == EMPTY_VALUE) {
+                $errors[] .= 'Please select class.';
+                break;
+            }
+        }
+        if (!empty($errors)) {
+            redirect('file-profile.php?complete='. $student_id);
+            echo display_errors($errors);
+        } else {
+            $db->query("UPDATE `enroll_student` SET `enroll_class` = '{$enroll_class}' WHERE `stud_id` = '{$student_id}'"); 
+            redirect('file-profile.php?complete='. $student_id);
+        }
+    }
+}
+
 if (isset($_GET['complete'])) {
     $student_id = (int)sanitize($_GET['complete']);
 
@@ -9,7 +33,7 @@ if (isset($_GET['complete'])) {
     $complete_photo = $db->query("SELECT * FROM `enroll_student` WHERE `stud_id` = '{$student_id}'");
     $photo = mysqli_fetch_assoc($complete_photo);
 
-
+    $enroll_class = $db->query("SELECT * FROM `school_class`");
 ?>
     <br>
     <div class="container-fluid mt-5">
@@ -79,9 +103,27 @@ if (isset($_GET['complete'])) {
                                                     <h3 class="text-center text-secondary"><?= $stud_prof_photo['stud_name'] ?></h3>
                                                     <img src="<?= PROOT . 'app/' . $stud_prof_photo['stud_prof_photo_url'] ?>" class="user-img d-block m-auto mb-2" />
                                                 </div>
-                                                <div class="mt-5">
+                                                <div class="mt-5 text-end">
                                                     <a href="enroll.php" class="btn btn-outline-dark mt-5">Back</a>
                                                 </div>
+                                                <?php if ($stud_prof_photo['enroll_class'] == EMPTY_VALUE):?>
+                                                <form action="file-profile.php?stud=<?=$stud_prof_photo['stud_id']?>" method="post">
+                                                    <h3 class="text-center text-secondary">Enroll into a CLASS</h3>
+                                                    <div class="mt-2">
+                                                        <select name="enroll" id="enroll" class="form-control form-control-sm">
+                                                            <option value="">Select Enroll class</option>
+                                                            <?php while($class = mysqli_fetch_assoc($enroll_class)):?>
+                                                            <option value="<?=$class['class_id']?>"><?=$class['class_name']?></option>
+                                                            <?php endwhile;?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mt-2 mb-3">
+                                                        <button type="submit" class="btn btn-sm btn-outline-dark">Enroll</button>
+                                                    </div>
+                                                </form>
+                                                <?php else:?>
+                                                    <h3 class="text-secondary text-center"><?=$stud_prof_photo['stud_name']?> has been enrolled to a class</h3>
+                                                <?php endif;?>
                                             <?php endwhile; ?>
                                         <?php endif; ?>
                                     </div>

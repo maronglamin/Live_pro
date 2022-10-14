@@ -112,7 +112,7 @@ $form_check = mysqli_fetch_assoc($form_filled);
                                                         <a href="file-profile.php?complete=<?= $enroll_stud['stud_id'] ?>" class="btn btn-outline-primary btn-sm text-secondary">Upload</a>
                                                     <?php }
                                                     if ($enroll_stud['enroll_done'] == IS_DONE) { ?>
-                                                        <a href="file-profile.php?complete=<?= $enroll_stud['stud_id']; ?>" class="btn btn-outline-success">View</a>
+                                                        <a href="file-profile.php?complete=<?= $enroll_stud['stud_id']; ?>" class="btn btn-sm btn-outline-success">View</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>

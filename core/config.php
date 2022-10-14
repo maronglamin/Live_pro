@@ -31,6 +31,7 @@ define('ENROLL_STATUS', PROOT. 'app/users/client/admission/enroll-status.php');
 define('ENROLL_YEAR', PROOT. 'app/users/admin/admission/academic-year.php');
 
 define('CLASS_PROPERTY', PROOT. 'app/users/admin/school/class_property.php');
+define('SUBJECT_URL', PROOT. 'app/users/admin/school/subjects.php');
 
 
 define('ADMIN_USER', "1");
