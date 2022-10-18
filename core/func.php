@@ -119,7 +119,7 @@ function time_mm($date)
 }
 function mm_yy($date)
 {
-    return date("D M d, Y", strtotime($date));
+    return date("D d M, Y", strtotime($date));
 }
 
 function human_date($date)

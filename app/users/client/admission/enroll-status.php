@@ -126,13 +126,13 @@ if (isset($_GET['statusOpen']) || isset($_GET['statusClose'])) {
                         <div class="col-md-8">
                             <h3 class="text-center text-secondary">Student's Profile</h3>
                             <form action="#" method="post" class="ms-3 mx-3">
-                                <div class="card mt-2 ms-2 mx-2">
+                                <!-- <div class="card mt-2 ms-2 mx-2">
                                     <div class="card-header">
                                         <button type="submit" class="btn btn-secondary btn-sm">Search</button>
                                         <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                                     </div>
-                                </div>
-                                <p class="text-secondary">Search Student</p>
+                                </div> -->
+                                <!-- <p class="text-secondary">Search Student</p>
                                 <div class="row">
                                     <div class="col-md-6 form-group mt-2 mb-2">
                                         <input type="text" name="stnumber" id="stnumber" placeholder="student id number" class="form-control form-control-sm">
@@ -140,7 +140,7 @@ if (isset($_GET['statusOpen']) || isset($_GET['statusClose'])) {
                                     <div class="col-md-6 form-group mt-2 mb-2">
                                         <input type="text" name="stnumber" id="stname" placeholder="full names" class="form-control form-control-sm">
                                     </div>
-                                </div>
+                                </div> -->
                             </form>
                             <div class="card mx-2">
                                 <table class="table table-striped table-sm table-hover">

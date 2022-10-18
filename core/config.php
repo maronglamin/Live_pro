@@ -29,9 +29,11 @@ define('ENROLLED_STUDENTS', PROOT. 'app/users/client/admission/enrolled.php');
 define('ADMIN_ENROLLED_STUDENTS', PROOT. 'app/users/admin/admission/enrolled.php');
 define('ENROLL_STATUS', PROOT. 'app/users/client/admission/enroll-status.php');
 define('ENROLL_YEAR', PROOT. 'app/users/admin/admission/academic-year.php');
+define('ADMISSION_LETTER', PROOT. 'app/users/admin/admission/letter.php');
 
 define('CLASS_PROPERTY', PROOT. 'app/users/admin/school/class_property.php');
 define('SUBJECT_URL', PROOT. 'app/users/admin/school/subjects.php');
+define('ASSIGN_SUBJ_URL', PROOT. 'app/users/admin/school/steach.php');
 
 
 define('ADMIN_USER', "1");

@@ -48,7 +48,7 @@ $inputs = $db->query("SELECT * FROM `enroll_student` WHERE `stud_inputted_by` = 
                                     <td>
                                         <a href="dashboard.php?view=<?=$input['stud_id']?>" class="btn btn-sm btn-outline-dark">View</a>
                                         <?php if ($input['auth_enroll'] == 1):?>
-                                        <a href="dashboard.php?view=<?=$input['stud_id']?>" class="btn btn-sm btn-outline-dark">admission letter</a>
+                                        <a href="<?=PROOT?>letter.php?view=<?=$input['stud_id']?>" class="btn btn-sm btn-outline-dark">admission letter</a>
                                         <?php endif;?>
                                     </td>
                                 </tr>

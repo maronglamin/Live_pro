@@ -21,7 +21,7 @@ if (isset($_GET["page"])) {
 }
 
 $start_from = ($page - 1) * $per_page_record;
-$user_sql = $db->query("SELECT * FROM `users` WHERE `user_id` != '{$auth_user}' AND `user_id` != 'MM2200' ORDER BY `user_role` ASC LIMIT $start_from, $per_page_record");
+$user_sql = $db->query("SELECT * FROM `users` WHERE `user_id` != '{$auth_user}' AND `user_id` != 'MM2200' ORDER BY `user_id` DESC LIMIT $start_from, $per_page_record");
 
 if (isset($_GET['dis'])) {
     $id = (int)sanitize($_GET['dis']);
