@@ -46,6 +46,7 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                         <h2 class="text-secondary text-center">Subject Teachers</h2>
                         <div class="row">
                             <div class="col-md-4">
+                                <?php if (!isset($_GET['edit'])) :?>
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="text-center text-secondary">Subject codes</h4>
@@ -64,6 +65,8 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                                                 $count_pri = mysqli_num_rows($pri);
                                                 $user = $db->query("SELECT * FROM `users` WHERE `user_name` = '{$teacher}'");
                                                 $count_user= mysqli_num_rows($user);
+                                                $user_exist = $db->query("SELECT * FROM `sole_subject_user` WHERE `user_name` = '{$teacher}'");
+                                                $count_exist_user = mysqli_num_rows($user_exist);
                                                 $check = mysqli_fetch_assoc($user);
                                                 
                                                 if ($count_pri == 0) {
@@ -73,6 +76,9 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                                                 }
                                                 if ($check != NULL && $check['user_role'] != TEACHER_USER) {
                                                     $errors[] .= "The username is not a teacher and can not be a subject";
+                                                }
+                                                if ($count_exist_user != 0) {
+                                                    $errors[] .= "Teacher exist as a subject holder. Please Check on update";
                                                 }
                                                 if (!empty($errors)) {
                                                     echo display_errors($errors);
@@ -107,6 +113,79 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                                     </form>
                                         </div>
                                 </div>
+                                <?php else:
+                                    $id = (int)sanitize($_GET['edit']);
+                                    $edit_record = $db->query("SELECT * FROM `sole_subject_user` WHERE `record_id` = '{$id}'");
+                                    $edit = mysqli_fetch_assoc($edit_record);
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="text-center text-secondary">Edit Inputs</h4>
+                                        </div>
+                                        <div class="mt-4">
+                                        <?php 
+                                            if (isset($_POST['edit_asign'])) {
+                                                    $required = ['primary', 'username'];
+                                                    foreach ($required as $fields) {
+                                                        if ($_POST[$fields] == EMPTY_VALUE) {
+                                                            $errors[] .= 'One of the required field is not filled.';
+                                                            break;
+                                                        }
+                                                    }
+                                                    $pri = $db->query("SELECT * FROM `subjects` WHERE `subj_code` = '{$primary}'");
+                                                    $count_pri = mysqli_num_rows($pri);
+                                                    $code_verify = mysqli_fetch_assoc($pri);
+                                                    $user = $db->query("SELECT * FROM `users` WHERE `user_name` = '{$teacher}'");
+                                                    $count_user= mysqli_num_rows($user);
+                                                    $user_exist = $db->query("SELECT * FROM `sole_subject_user` WHERE `user_name` = '{$teacher}'");
+                                                    $count_exist_user = mysqli_num_rows($user_exist);
+                                                    $check = mysqli_fetch_assoc($user);
+                                                    
+                                                    if ($count_pri == 0) {
+                                                        $errors[] .= "The Primary subject code does not exists in records";
+                                                    } elseif ($count_user == 0) {
+                                                        $errors[] .= "The username does not exists in records";
+                                                    }
+                                                    if ($check != NULL && $check['user_role'] != TEACHER_USER) {
+                                                        $errors[] .= "The username is not a teacher and can not be a subject";
+                                                    }
+                                                    if (!empty($errors)) {
+                                                        echo display_errors($errors);
+                                                    } else {
+                                                        $db->query("UPDATE `sole_subject_user` SET `user_name` = '{$teacher}', `subj_primary` = '{$primary}', `subj_sec_1` = '{$sec}', `subj_sec_2` = '{$sec2}', `subj_sec_3` = '{$sec3}',`subj_sec_4` = '{$sec4}',`inputted_by` = '{$auth_user_name}' WHERE `record_id` ='{$id}'");
+                                                        echo spinner();
+                                                        redirect("steach.php?edit=".$id);
+                                                    }
+                                                }
+                                            ?>
+                                        <form action="steach.php?edit=<?=$id?>" method="post" class="row p-2">
+                                            <p class="text-secondary"><strong>Warning</strong> Your inputs are not check by the system. Any incorrect <strong>CODE</strong> will not be detected</p>
+                                            <div class="mt-2">
+                                                <input type="text" name="username" value="<?=$edit['user_name']?>" id="username" class="form-control form-control-sm" placeholder="Teacher's username">
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="primary" id="primary" value="<?=$edit['subj_primary']?>" class="form-control form-control-sm" placeholder="Enter primary subject code">
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="sec1" id="primary" value="<?=$edit['subj_sec_1']?>" class="form-control form-control-sm" placeholder="Enter secondary subject code (optional)">
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="sec2" id="primary" value="<?=$edit['subj_sec_2']?>" class="form-control form-control-sm" placeholder="Enter secondary subject 2 code (optional)">
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="sec3" id="primary" value="<?=$edit['subj_sec_3']?>" class="form-control form-control-sm" placeholder="Enter secondary subject 3 code (optional)">
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="sec4" id="primary" value="<?=$edit['subj_sec_4']?>" class="form-control form-control-sm" placeholder="Enter secondary subject 4 code (optional)">
+                                            </div>
+                                            <div class="col gap-2 p-2">  <!--d-grid gap-2 p-2 -->
+                                                <button name="edit_asign" class="btn btn-outline-dark" type="submit">Save</button>
+                                                <a href="steach.php" class="btn btn-outline-primary">Back</a>
+                                            </div>
+                                    </form>
+                                            </div>
+                                    </div>
+                                <?php endif;?>
                          </div>
                             <div class="col-md-8">
                                 <table class="table table-striped table-sm table-hover mt-2">
@@ -116,12 +195,13 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                                             <th scope="col">Code</th>
                                             <th scope="col">Primary Subject</th>
                                             <th scope="col">Grade</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php while($subj_list = mysqli_fetch_assoc($subj_lists)):
                                             $teacher = $subj_list['user_name'];
-                                            $sub_lists = $db->query("SELECT `u`.`full_name`, `s`.`subj_grade_level`, `s`.`subj_name` FROM `sole_subject_user` `su`, `users` `u`, `subjects` `S` WHERE `s`.`subj_code` = `su`.`subj_primary` AND `su`.`user_name` = `u`.`user_name` AND `su`.`user_name` ='{$teacher}'");
+                                            $sub_lists = $db->query("SELECT `u`.`full_name`, `s`.`subj_grade_level`, `s`.`subj_name`, `su`.`record_id` FROM `sole_subject_user` `su`, `users` `u`, `subjects` `S` WHERE `s`.`subj_code` = `su`.`subj_primary` AND `su`.`user_name` = `u`.`user_name` AND `su`.`user_name` ='{$teacher}'");
                                             ?>
                                             <?php while($sub_list = mysqli_fetch_assoc($sub_lists)):?>
                                             <tr>
@@ -129,6 +209,7 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                                                 <td><?=$subj_list['subj_primary']?></td>
                                                 <td><?=$sub_list['subj_name']?></td>
                                                 <td>Grade <?=$sub_list['subj_grade_level']?></td>
+                                                <td><a href="steach.php?edit=<?=$sub_list['record_id']?>" class="btn btn-sm btn-outline-dark">Edit</a></td>
                                             </tr>
                                             <?php endwhile;?>
                                         <?php endwhile;?>
