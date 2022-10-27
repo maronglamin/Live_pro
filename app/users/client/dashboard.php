@@ -18,6 +18,9 @@ include(ROOT . DS . "app" . DS . "components" . DS . "client_nav.php");
                 <?php if ($auth_user_role == PRINCIPAL_USER):?>
                     <?php include(ADMISSION_PRINCIPAL_DASHBOAD); ?>
                 <?php endif;?> 
+                <?php if ($auth_user_role == TEACHER_USER):?>
+                    <?php include(TEACHER_DASHBOAD); ?>
+                <?php endif;?> 
             </div>
         </div>
     </div>

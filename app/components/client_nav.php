@@ -48,6 +48,9 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?= CLIENT_ADMISSION_URL ?>">Enroll Students</a></li>
+                            <li><a class="dropdown-item" href="<?= CLIENT_CREATE_CLASS_URL ?>">Create Class</a></li>
+                            <li><a class="dropdown-item" href="<?= CLIENT_CREATE_SUBJECT_URL ?>">Create School Subject</a></li>
+                            <li><a class="dropdown-item" href="<?= CLIENT_SUBJECT_URL ?>">Assign Subject</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

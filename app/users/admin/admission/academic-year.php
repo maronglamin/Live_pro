@@ -21,7 +21,7 @@ $enroll_stud_query = $db->query("SELECT * FROM `enroll_student` ORDER BY `stud_i
 
 
 # academic year query
-$acd_year_query = $db->query("SELECT * FROM `acad_year` WHERE `acad_year_closed_status` != 1 ORDER BY `acad_year_id`");
+$acd_year_query = $db->query("SELECT * FROM `acad_year` WHERE `acad_year_closed_status` != 1 ORDER BY `acad_year` DESC LIMIT 15");
 
 if (isset($_GET['statusOpen']) || $_GET['statusClose']) {
     $tatus_open = (int)sanitize($_GET['statusOpen']);

@@ -16,7 +16,7 @@ $stud_health = ((isset($_POST['health'])) ? sanitize($_POST['health']) : '');
 $errors = [];
 $acad_year_query = $db->query("SELECT `acad_year_id`, `acad_year` FROM `acad_year` WHERE `close_acad_year` != 1 AND `acad_year_closed_status` != 1");
 
-$per_page_record = RECORD_TO_SHOW;
+$per_page_record = 25;
 if (isset($_GET["page"])) {
     $page  = $_GET["page"];
 } else {

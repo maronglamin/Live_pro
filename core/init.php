@@ -25,6 +25,7 @@ if (isset($_SESSION['ADMIN_USER_SESSIONS'])) {
     $auth_user_type = $user_data['user_type'];
     $auth_user_name = $user_data['user_name'];
     $auth_user_role = $user_data['user_role'];
+    $auth_user_fullname = $user_data['full_name'];
     $auth_password_change = $user_data['change_password'];
     
 } elseif (isset($_SESSION['CLIENT_USER_SESSIONS'])) {
@@ -40,6 +41,7 @@ if (isset($_SESSION['ADMIN_USER_SESSIONS'])) {
     $auth_user_type = $user_data['user_type'];
     $auth_user_name = $user_data['user_name'];
     $auth_user_role = $user_data['user_role'];
+    $auth_user_fullname = $user_data['full_name'];
     $auth_password_change = $user_data['change_password'];
 }
 

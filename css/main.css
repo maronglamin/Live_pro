@@ -45,3 +45,9 @@ img.herb-img-detail {
 .userImg {
   border-radius: 50%;
 }
+
+#group-icon {
+  width: 250px;
+  height: 172px;
+  margin: 10px auto 0 auto;
+}
