@@ -1,6 +1,5 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . './schoolapp/core/init.php';
-// include(ROOT . DS . 'nav.php');
 if (!is_logged_in()) {
     login_error_redirect(PROOT . "index.php", "Dashboard");
 }

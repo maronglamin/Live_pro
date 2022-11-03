@@ -182,3 +182,22 @@ function substrwords($text, $maxchar, $end = '...')
     }
     return $output;
 }
+
+function printDoc () {
+    $html = '<script>function printElement(elem, title) { var popup = window.open(", "_blank", `width=${window.innerWidth}, height=${window.innerHeight}`);';
+
+    $html .= 'popup.document.write("<html><head><link rel="stylesheet" href="css/custom.min.css"><title>" + title + "</title>");';
+    $html .= 'popup.document.write("<style></style>");';
+    $html .= 'popup.document.write("</head><body>");';
+    $html .= 'popup.document.write(document.getElementById(elem).innerHTML);';
+    $html .= 'popup.document.write("</body></html>");';
+
+    $html .= 'popup.document.close();';
+    $html .= 'popup.focus();';
+
+    $html .= 'popup.print();popup.close();';
+    $html .= 'return true;}';
+    $html .= '</script>';
+
+    return $html;
+}

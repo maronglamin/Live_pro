@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="<?= PROOT ?>css/custom.min.css">
     <link rel="stylesheet" href="<?= PROOT ?>css/main.css">
 
-    <script src="<?= PROOT ?>/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-
+    <script src="<?= PROOT ?>node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <!-- <script src="<?= PROOT ?>css/print.js"></script> -->
     <title>Yalding School App</title>
 </head>
 

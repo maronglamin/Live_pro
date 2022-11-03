@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= CLIENT_DASHBOARD_URL ?>"><span class="text-primary">
-                <img src="<?= PROOT ?>app/photos/afang_logo.png" alt="" width="45" height="35" class="d-inline-block align-text-top">
+                <img src="<?= PROOT ?>app/photos/afang_logo.png" alt="" width="45" height="35" class="d-inline-block align-text-top active">
                 Yalding</span> <span class="text-warning">School</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,19 @@
             </ul>
             <ul class="navbar-nav d-flex">
                 <?php if ($auth_user_role == ADMISSION_USER) : ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Grades
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" aria-current="page" href="<?=GRADE_VIEW_ADMISSION_USER?>">Master List</a></li>
+                            <li><a class="dropdown-item" href="#">Student Result</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Admission

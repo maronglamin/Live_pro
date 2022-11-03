@@ -36,7 +36,7 @@ if (isset($_GET['act']) || isset($_GET['deact'])) {
     } else {
         $db->query("UPDATE `subjects` SET `subj_status`= '0', `updated_at` = '{$current_date}', `updated_by` = '{$auth_user_name}' WHERE `subj_id`='{$deact}'");
     }  
-    redirect('subjects.php');   
+    redirect('create_subject.php');   
 }
 ?>
 
@@ -83,7 +83,7 @@ if (isset($_GET['act']) || isset($_GET['deact'])) {
                                         } else {
                                             $db->query("INSERT INTO `subjects`(`subj_name`, `subj_code`, `subj_grade_level`, `subj_status`, `subj_period`, `inputted_by`) VALUES ('{$subj_name}', '{$subj_code}','{$subj_level}','{$subj_status}','{$subj_period}','{$auth_user_name}')");
                                             echo spinner();
-                                            redirect('subjects.php');
+                                            redirect('create_subject.php');
                                         }
                                     }
                                             ?>
@@ -144,7 +144,7 @@ if (isset($_GET['act']) || isset($_GET['deact'])) {
                                                 <td scope="row"><?=substrwords($subj['subj_name'], 21)?></td>
                                                 <td><?=$subj['subj_grade_level']?></td>
                                                 <td><?=$subj['subj_period']?> periods per week</td>
-                                                <td><?=(($subj['subj_status']) == 1) ? 'Active <a href="subjects.php?deact=' .$subj['subj_id'] .'" class="btn btn-sm btn-outline-primary">Deactivate</a>' : '<a href="subjects.php?act='. $subj['subj_id'] . '" class="btn btn-sm btn-outline-danger">Activate</a>' ?></td>
+                                                <td><?=(($subj['subj_status']) == 1) ? 'Active <a href="create_subject.php?deact=' .$subj['subj_id'] .'" class="btn btn-sm btn-outline-primary">Deactivate</a>' : '<a href="create_subject.php?act='. $subj['subj_id'] . '" class="btn btn-sm btn-outline-danger">Activate</a>' ?></td>
                                                 <td></td>
                                             </tr>
                                             <?php endwhile;?>
@@ -164,19 +164,19 @@ if (isset($_GET['act']) || isset($_GET['deact'])) {
                                     <ul class="pagination justify-content-end">
                                         <li class="page-item">
                                             <?php if ($page >= 2) : ?>
-                                                <a class="page-link" href="subjects.php?page=<?= ($page - 1) ?>" tabindex="-1">Previous</a>
+                                                <a class="page-link" href="create_subject.php?page=<?= ($page - 1) ?>" tabindex="-1">Previous</a>
                                             <?php endif; ?>
                                         </li>
                                         <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
                                             <?php if ($i == $page) : ?>
-                                                <li class="page-item"><a class="page-link" href="subjects.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                                <li class="page-item"><a class="page-link" href="create_subject.php?page=<?= $i ?>"><?= $i ?></a></li>
                                             <?php else : ?>
-                                                <li class="page-item"><a class="page-link" href="subjects.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                                <li class="page-item"><a class="page-link" href="create_subject.php?page=<?= $i ?>"><?= $i ?></a></li>
                                             <?php endif; ?>
                                         <?php endfor; ?>
                                         <li class="page-item">
                                             <?php if ($page < $total_pages) : ?>
-                                                <a class="page-link" href="subjects.php?page=<?= ($page + 1) ?>">Next</a>
+                                                <a class="page-link" href="create_subject.php?page=<?= ($page + 1) ?>">Next</a>
                                             <?php endif; ?>
                                         </li>
                                     </ul>

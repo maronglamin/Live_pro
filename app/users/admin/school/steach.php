@@ -63,12 +63,14 @@ $subj_lists = $db->query("SELECT * FROM `sole_subject_user` ORDER BY `record_id`
                                                 }
                                                 $pri = $db->query("SELECT * FROM `subjects` WHERE `subj_code` = '{$primary}'");
                                                 $count_pri = mysqli_num_rows($pri);
+                                                
                                                 $user = $db->query("SELECT * FROM `users` WHERE `user_name` = '{$teacher}'");
                                                 $count_user= mysqli_num_rows($user);
                                                 $user_exist = $db->query("SELECT * FROM `sole_subject_user` WHERE `user_name` = '{$teacher}'");
                                                 $count_exist_user = mysqli_num_rows($user_exist);
                                                 $check = mysqli_fetch_assoc($user);
                                                 
+                                    
                                                 if ($count_pri == 0) {
                                                     $errors[] .= "The Primary subject code does not exists in records";
                                                 } elseif ($count_user == 0) {
