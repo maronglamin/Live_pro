@@ -36,6 +36,7 @@ define('ENROLL_YEAR', PROOT. 'app/users/admin/admission/academic-year.php');
 define('ADMISSION_LETTER', PROOT. 'app/users/admin/admission/letter.php');
 
 define('GRADE_VIEW_ADMISSION_USER', PROOT . "app/users/client/admission/grades.php");
+define('GRADE_VIEW_STUDENT', PROOT . "app/users/client/admission/std_grades.php");
 
 
 define('TEACHER_DASHBOAD', 'teacher/dashboard.php');

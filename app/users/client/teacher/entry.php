@@ -51,7 +51,7 @@ if (isset($_GET['code'])) {
                             if (!empty($errors)) {
                                 echo display_errors($errors);
                             } else { 
-                                    $class_qry = $db->query("SELECT * FROM `enroll_student` WHERE `stud_id` = '{$student_id_search}'");
+                                    $class_qry = $db->query("SELECT * FROM `enroll_student` WHERE `stud_id` = '{$student_id_search}' AND `enroll_class` !=''");
                             }
                      }?>
                             <div class="row">
@@ -70,11 +70,13 @@ if (isset($_GET['code'])) {
                                 } if (isset($_POST['fetch_student_id'])) {
                                 while ($result = mysqli_fetch_assoc($class_qry)) { 
                                 $stud_id = $result['stud_id'];
+                                $stud_enroll_class = $result ['enroll_class'];
                                 ?>
                             <form action="uploadGrade.php?code=<?=$qry_code['subj_code']?>" method="post">
                                 <div class="row">
                                     <div class="col">
                                         <input type="hidden" name="stud_id" value="<?=$stud_id?>">
+                                        <input type="hidden" name="stud_enroll_class" value="<?=$stud_enroll_class?>">
                                         <div class="col-md-8">
                                             <div class="mt-2">
                                                 <input type="text" name="stud_name" id="stud_name" disabled value="<?=$result['stud_name']?>" class="form-control form-control-sm">

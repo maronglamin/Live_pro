@@ -54,7 +54,6 @@ $subjects = $db->query("SELECT * FROM `subjects` ORDER BY `subj_grade_level`,`su
 
                                         <?php if(isset($_POST['search_subject'])):?>
                                             <div id="subject-list">
-                                                <h3 class="text-secondary"></h3>
                                                     <div class="container">
                                                         <table class="table table-striped table-sm table-hover">
                                                             <thead>

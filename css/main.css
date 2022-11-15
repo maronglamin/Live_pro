@@ -55,3 +55,9 @@ img.herb-img-detail {
 #content-center {
   margin: 2px auto;
 }
+
+.report-card-img {
+  height: 121px;
+  border-radius: 50%;
+  width: 150px;
+}

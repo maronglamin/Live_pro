@@ -5,6 +5,7 @@ $grade_sec = ((isset($_POST['sec-grade'])) ? sanitize($_POST['sec-grade']) : '')
 $grade_third = ((isset($_POST['third-grade'])) ? sanitize($_POST['third-grade']) : '');
 
 $student_id = ((isset($_POST['stud_id'])) ? sanitize($_POST['stud_id']) : '');
+$stud_enroll_class = ((isset($_POST['stud_enroll_class'])) ? sanitize($_POST['stud_enroll_class']) : '');
 $errors = [];
 
 if (isset($_GET['code'])) { 
@@ -29,7 +30,7 @@ if (isset($_GET['code'])) {
             if (!empty($errors)) {
                 echo display_errors($errors);
             } else {
-                $db->query("INSERT INTO `stud_grades`(`stud_id`, `teacher_id`, `subj_code`, `grade_1`, `grade_2`, `grade_3`) VALUES ('{$student_id}','{$auth_user_name}','{$code}','{$grade_first}','{$grade_sec}','{$grade_third}')");
+                $db->query("INSERT INTO `stud_grades`(`stud_id`, `teacher_id`, `subj_code`, `grade_1`, `grade_2`, `grade_3`,`stud_enroll_class`) VALUES ('{$student_id}','{$auth_user_name}','{$code}','{$grade_first}','{$grade_sec}','{$grade_third}','{$stud_enroll_class}')");
                 redirect('list.php?code='. $code);
             }
         

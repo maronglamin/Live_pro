@@ -48,7 +48,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" aria-current="page" href="<?=GRADE_VIEW_ADMISSION_USER?>">Master List</a></li>
-                            <li><a class="dropdown-item" href="#">Student Result</a></li>
+                            <li><a class="dropdown-item" href="<?=GRADE_VIEW_STUDENT?>">Student Result</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
