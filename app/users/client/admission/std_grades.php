@@ -99,16 +99,26 @@ $class = $db->query("SELECT * FROM `school_class`");
                                     ?>
                                     <div class="col-md-8">
                                         <div id="report_card">
-                                        <h4 class="text-center text-secondary">Report card</h4>
+                                        <h3 class="text-center text-secondary">Yalding Bascis Cycle School.</h3>
+                                        <h5 class="text-center text-secondary">STUDENT REPORT CARD.</h5>
+                                        <p class="text-center text-secondary"><strong>Disclaimer:</strong> At the time of printing this report, the school official varified the data.<br> If the given data has an incorrect informatiom, the school will absolves from all liabilities arising thereof.</p>
                                             <div class="card p-3">
                                                 <?php while($detail = mysqli_fetch_assoc($details)):?>
                                                     <div class="row">
-                                                        <div class="col">
-                                                            STUDENT NAME : <strong><?=cap($detail['stud_name'])?></strong><br>
-                                                            PRINTED DATE: <strong><?=human_date(date("Y-m-d H:i:s"))?></strong><br>
+                                                        <div class="col col-md-3">
+                                                            <div>STUDENT NAME</div>
+                                                            <div>PRINTED DATE</div>
                                                         </div>
-                                                        <div class="col report-card-img">
-                                                        <img src="<?= PROOT . 'app/' . $detail['stud_prof_photo_url'] ?>" class="user-img d-block m-auto mb-2" />                                                        </div>
+                                                        <div class="col col-md-6">
+                                                            <div><strong><?=cap($detail['stud_name'])?></strong></div>
+                                                            <div><strong><?=human_date(date("Y-m-d H:i:s"))?></strong></div>
+                                                        </div>
+                                                        <div class="col col-md-3">
+                                                            <img src="<?= PROOT . 'app/' . $detail['stud_prof_photo_url'] ?>" class="report-card-img d-block m-auto mb-2" /> 
+                                                        </div>
+                                                            
+                                                    </div>
+                                                        
                                                     </div>
                                                 <?php endwhile;?>
                                                 <div class="card mx-2 mt-4">
@@ -125,7 +135,9 @@ $class = $db->query("SELECT * FROM `school_class`");
                                                                 </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php while ($result = mysqli_fetch_assoc($class_list)):?>
+                                                            <?php while ($result = mysqli_fetch_assoc($class_list)):
+                                                                $grand_total = ((int)$result['grade_1'] + (int)$result['grade_2'] + (int)$result['grade_3']);
+                                                                ?>
                                                                 <tr>
                                                                     <th scope="col"><?=$result['subj_code']?></th>
                                                                     <td scope="col"><?=$result['grade_1']?></td>
@@ -133,15 +145,35 @@ $class = $db->query("SELECT * FROM `school_class`");
                                                                     <td scope="col"><?= (int)$result['grade_1'] + (int)$result['grade_2']?></td>
                                                                     <td scope="col"><?=$result['grade_3']?></td>
                                                                     <td scope="col"><?=(int)$result['grade_1'] + (int)$result['grade_2'] + (int)$result['grade_3']?></td>
-                                                                    <td scope="col"><?=$result['subj_code']?></td>
+                                                                    <td scope="col">
+                                                                        <?php if ($grand_total >= 90){
+                                                                            echo '<strong>A</strong>';
+                                                                        } elseif ($grand_total >= 80 && $grand_total <= 89){
+                                                                            echo '<strong>B</strong>';
+                                                                        } elseif ($grand_total >= 70 && $grand_total <= 79){ 
+                                                                            echo '<strong>C</strong>';
+                                                                        } elseif ($grand_total >= 60 && $grand_total <= 69){ 
+                                                                            echo '<strong>D</strong>';
+                                                                        }
+                                                                         elseif ($grand_total >= 40 && $grand_total <= 59){ 
+                                                                            echo '<strong>E</strong>';
+                                                                        } else {
+                                                                            echo '<strong>F</strong>';
+                                                                        }
+                                                                        ?>
+                                                                    </td>
                                                                 </tr>
                                                             <?php endwhile;?>
                                                         </tbody>
                                                     </table>
                                             </div>
+                                                <div class="card mt-3 p-5">
+                                                    <h3 class="text-secondary">Authorized Stamp:</h3>
+                                                    
+                                                </div>
                                         </div>
+                                        <button class="btn btn-outline-dark mt-3" type="button" onClick="printElement('report_card', 'Afang School app')">Print</button>
                                     </div>
-                                    <button class="btn btn-outline-dark mt-3" type="button" onClick="printElement('report_card', 'Afang School app')">Print</button>
                             <?php }?>
                             <?php if(!isset($_POST['sn_fetch'])):?>
                                 <div class="col-md-8">
@@ -185,7 +217,7 @@ $class = $db->query("SELECT * FROM `school_class`");
     function printElement(elem, title) {
         var popup = window.open('', '_blank', `width=${window.innerWidth}, height=${window.innerHeight}`);
 
-        popup.document.write('<html><head><link rel="stylesheet" href="<?=PROOT?>css/custom.min.css"><title>' + title + '</title>');
+        popup.document.write('<html><head><link rel="stylesheet" href="<?=PROOT?>css/custom.min.css"><link rel="stylesheet" href="<?=PROOT?>css/main.css"><title>' + title + '</title>');
         popup.document.write('<style></style>');
         popup.document.write('</head><body>');
         popup.document.write(document.getElementById(elem).innerHTML);
